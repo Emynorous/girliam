@@ -1,0 +1,56 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manipulace s řetězcem</title>
+</head>
+<body>
+
+  <h1>Seven thousand seven hundred seven silver tubes pouring over seven hundred seven thousand seven silver roofs</h1>
+
+  <label for="textInput">Zadej slovíčko ;> :</label>
+  <input type="text" id="textInput" placeholder="Vložte textový řetězec">
+
+  <button onclick="reverseString()">Obrácení</button>
+  <button onclick="splitAndDisplayWords()">Rozdělit</button>
+  <button onclick="countWordOccurrences()">Výskyt</button>
+  <button onclick="replaceText()">Nahradit</button>
+
+  <div id="output"></div>
+
+  <script>
+    function reverseString() {
+      var inputText = document.getElementById('textInput').value;
+      var reversedText = inputText.split('').reverse().join('');
+      displayResult(reversedText);
+    }
+
+    function splitAndDisplayWords() {
+      var inputText = document.getElementById('textInput').value;
+      var words = inputText.split(' ');
+      displayResult(words.join('<br>'));
+    }
+
+    function countWordOccurrences() {
+      var inputText = document.getElementById('textInput').value;
+      var wordToCount = prompt("slovo:");
+      var regex = new RegExp('\\b' + wordToCount + '\\b', 'gi');
+      var occurrences = (inputText.match(regex) || []).length;
+      displayResult("Slovo '" + wordToCount + "' je tu " + occurrences + "krát.");
+    }
+
+    function replaceText() {
+      var inputText = document.getElementById('textInput').value;
+      var target = prompt("nahradit:");
+      var replacement = prompt("Čím:");
+      var regex = new RegExp('\\b' + target + '\\b', 'gi');
+      var newText = inputText.replace(regex, replacement);
+      displayResult(newText);
+    }
+
+    function displayResult(result) {
+      document.getElementById('output').innerHTML = "<p>Výsledek:</p><p>" + result + "</p>";
+    }
+  </script>
+
+</body>
+</html>
